@@ -56,6 +56,10 @@
 .Holiday {
   background-color: rgb(243, 190, 190);
 }
+.EmptyDate {
+  color: rgb(172, 168, 168);
+  border : solid 1px rgb(228, 223, 223);
+}
 .Holiday:hover {
   background-color: rgb(230, 160, 160);
 }
@@ -131,7 +135,22 @@
 }
 .HeaderLeft {
 display: flex;
-flex-direction: row;
+flex-direction: column;
 align-items: center;
-gap: 5%
+gap: 5%;
+align-items: flex-start;
+}
+
+.HeaderRight_error {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.ErrorContainer{
+  padding: 5px;
+  width: 30%;
+}
+.Error {
+  margin: 0;
+  color: red;
 }

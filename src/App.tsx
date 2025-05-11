@@ -49,7 +49,8 @@ function App() {
   const [yearBuffer, setYearBuffer] = useState<string>('');
   const [dateString, setDateString] = useState<string>('');
   const holidays = useRef<Holiday[]>([]);
-  const [holidaysLoaded, setHolidaysLoaded] = useState(false);
+  const [holidaysLoaded, setHolidaysLoaded] = useState<boolean>(false);
+  const [error, setError] = useState<string>('')
 
   const months = [
     'January', 'February', 'March', 'April', 'May', 'June',
@@ -59,7 +60,6 @@ function App() {
   const days  = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fry", "Sat"];
 
 
-
   const changeYear = () => { //changes displayed year to year stored in "yearBuffer" state
     if(yearBuffer == ''){
       return
@@ -67,15 +67,16 @@ function App() {
     const parsed = parseInt(yearBuffer);
 
     if(isNaN(parsed)){
-      alert("Please enter a valid year");
+      setError("Error: Year not valid")
       setYearBuffer('');
       return;
     }
     if(Math.abs(parsed) > 30000){
-      alert("Year out of range");
+      setError("Error: Year out of range")
       setYearBuffer('');
       return;
     }
+    setError('')
     setYear(parsed)
     setYearBuffer('');
   }
@@ -84,24 +85,33 @@ function App() {
 
     const dateArray = dateString.split('.').map(Number);
     if (dateArray.length != 3){
-      alert("Please enter valid date. Format: day.month.year");
+      setError("Error: Date format not valid")
       return;
     }
     const month = dateArray[1];
     const year = dateArray[2];
     if(month < 1 || month > 12){
-      alert("Enter valid month");
+      setError("Error: Month not valid")
       return;
     }
     if(Math.abs(year) > 30000){
-      alert("Year out of range");
+      setError("Error: Year out of range")
+      return;
+    }
+    if(isNaN(month) || isNaN(year)){
+      setError("Error: Date format not valid")
       return;
     }
 
-
+    setError('')
     setMonth(month);
     setYear(year);
 
+  }
+
+  const changeMonth = (month : number) => {
+    setError('')
+    setMonth(month)
   }
 
   const getHolidayName = (day: number, month : number, year : number) => {
@@ -191,7 +201,8 @@ function App() {
 
   useEffect(() => {
     readFile();
-    setYear(2025);
+    setYear(new Date().getFullYear());
+    setMonth(new Date().getMonth() + 1);
   }, [])
 
   return (
@@ -199,6 +210,9 @@ function App() {
       <div className='CalendarContainer'>
         {/* CALENDAR HEADER */}
         <div className='HeaderContainer'>
+            <div className='ErrorContainer'>
+              <p className='Error'>{error}</p>
+            </div>
           <div className='HeaderTop'>
             <p className='YearLabel'>{year}</p>
             <p className='MonthLabel'>{stringifyMonth(month)}</p>
@@ -219,11 +233,14 @@ function App() {
                   }}
                 />
             </div>
+
+
             <div className='HeaderRight'>
+
               {/*MONTH SELECT*/}
               <select 
                 value={month} 
-                onChange={(e) => setMonth(parseInt(e.target.value))}
+                onChange={(e) => changeMonth(parseInt(e.target.value))}
                 className='MonthInput'
               >
                 {/*GENERATE MONTH OPTIONS LIST*/}
