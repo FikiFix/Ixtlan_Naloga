@@ -1,0 +1,11 @@
+version: '3.8'
+
+services: 
+  ixtlan-naloga:
+    build: .
+    ports:
+      - "5173:5173" 
+    volumes:
+      - .:/app
+      - /app/node_modules
+    container_name: naloga_dev

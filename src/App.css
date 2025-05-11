@@ -1,0 +1,137 @@
+:root {
+  --datesGap : 10px;
+}
+* {
+  box-sizing: border-box;
+}
+.ScreenContainer {
+  position: absolute;
+  top : 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  padding-bottom: 5%;
+}
+.CalendarContainer {
+  width: 80%;
+  border: solid 1px black;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  padding: 5%;
+}
+
+.DaysContainer,
+.DatesContainer {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  column-gap: var(--datesGap);
+  row-gap: var(--datesGap);;
+}
+
+.DateContainer {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border : solid 1px rgb(165, 164, 164);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s, transform 0.3s;
+  padding: 5%;
+}
+
+.DateContainer:hover {
+  background-color: #f0f0f0;
+  transform: scale(1.05);
+}
+.Sunday {
+  background-color: rgb(210, 216, 236);
+}
+.Holiday {
+  background-color: rgb(243, 190, 190);
+}
+.Holiday:hover {
+  background-color: rgb(230, 160, 160);
+}
+.Sunday:hover {
+  background-color: rgb(170, 180, 206);
+}
+.Day {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 5px;
+  font-family: Comic Sans MS;
+}
+
+.YearLabel {
+  font-size: 46px;
+  margin : 0;
+  font-weight: bold;
+  color : rgb(0, 0, 0)
+}
+.MonthLabel {
+  font-size: 46px;
+  margin : 0;
+  font-weight: bold;
+}
+.YearInput {
+  border-radius: 10px;
+  border: solid gray 0.5px;
+  height: 30px;
+  width: 20%;
+}
+
+.MonthInput {
+  border-radius: 10px;
+  border: solid gray 0.5px;
+  height: 30px;
+}
+
+.DateInput {
+  border-radius: 10px;
+  border: solid gray 0.5px;
+  height: 30px;
+}
+
+
+.HeaderContainer {
+  display : flex;
+  flex-direction: column;
+  gap: 5%;
+  justify-content: center;
+}
+
+.HeaderTop {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.HeaderRight {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.HeaderBottom{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 2%;
+}
+.HeaderLeft {
+display: flex;
+flex-direction: row;
+align-items: center;
+gap: 5%
+}
