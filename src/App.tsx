@@ -174,8 +174,8 @@ function App() {
           const d = parseInt(dStr);
           const m = parseInt(mStr);
 
-          const y = (repeat == 'True\r' ? 0 : parseInt(yStr));
-          const r = (repeat == 'True\r');
+          const y = repeat.trim() === 'True' ? 0 : parseInt(yStr);
+          const r = repeat.trim() === 'True';
 
           const holiday : Holiday = {
             name : name,
