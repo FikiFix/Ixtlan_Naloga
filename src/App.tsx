@@ -57,7 +57,6 @@ function App() {
     'July', 'August', 'September', 'October', 'November', 'December'
   ];
 
-  const days  = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fry", "Sat"];
 
 
   const changeYear = () => { //changes displayed year to year stored in "yearBuffer" state
