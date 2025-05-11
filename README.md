@@ -45,3 +45,4 @@ Content:
    Dan samostojnosti in enotnosti,26.12.,True
    Binkoštna nedelja,19.5.2024,False
 ```
+
